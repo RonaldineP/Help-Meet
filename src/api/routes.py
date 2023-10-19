@@ -3,14 +3,14 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_tok
 from cloudinary import uploader
 from api.models import db, User, Post, Image
 from api.utils import generate_sitemap, APIException
-from flask import Flask, request, jsonify
+
 from api.models import User
-from flask import Flask, request, jsonify
+
 from flask_cors import CORS
-from api.models import db, User
+
 from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
 from flask import jsonify
-from flask import Flask, request, jsonify
+
 
 
 
@@ -25,6 +25,9 @@ api = Blueprint('api', __name__)
 def get_user(user_id):
     user = User.query.filter_by(id=user_id).first()
     return jsonify(user.serialize()), 200
+
+
+
 
 @api.route("/sign-up", methods=["POST"])
 def sign_up():
@@ -117,6 +120,8 @@ def log_in():
         "user": user.serialize(),
         "token": token
     }), 200
+
+
 @api.route("/profile-image", methods=["PUT"])
 @jwt_required()
 def create_profile_image():
@@ -176,10 +181,16 @@ def get_posts():
     post_dictionaries = [post.serialize() for post in posts]
     return jsonify(post_dictionaries)
 
+
+
+
 @api.route('/posts/<int:id>', methods=['GET'])
 def get_post(id):
     post = Post.query.get(id)
     return jsonify(post.serialize()), 200
+
+
+
 
 @api.route('/posts', methods=['POST'])
 @jwt_required()
@@ -199,6 +210,10 @@ def create_post():
     db.session.commit()
 
     return jsonify(new_post.serialize()), 201
+
+
+
+
 
 @api.route('/add-post-candidate', methods=['PUT'])
 @jwt_required()
@@ -220,12 +235,19 @@ def add_post_candidate():
 
     return jsonify(post.serialize()), 200
 
+
+
+
+
 @api.route("/post/<int:id>", methods=["DELETE"])
 def delete_post(id):
     Post.query.filter_by(id=id).delete()
     db.session.commit()
 
     return jsonify("Successful"), 200
+
+
+
 
 @api.route("/post-images", methods=["POST"])
 @jwt_required()

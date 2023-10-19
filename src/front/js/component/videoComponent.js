@@ -39,12 +39,16 @@ const VideoComponent = () => {
           <div className="custom-text">{messages[index]}</div>
         </div>
       </div>
-      <video autoPlay loop muted className="custom-video-element">
+      {/* <video autoPlay loop muted className="custom-video-element">
         <source
           src="https://res.cloudinary.com/dggcy5lcn/video/upload/v1686616744/My_Movie_io34zg.mp4"
           type="video/mp4"
         />
-      </video>
+      </video> */}
+       <img
+                      src={"https://www.homepartymarketplace.com/wp-content/uploads/2020/03/work-from-home-job-essential-income-finance-help-stay-wah-.jpg"}
+                      alt="image for landing"
+                    />
     </div>
   );
 };
